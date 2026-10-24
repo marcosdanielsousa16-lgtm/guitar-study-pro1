@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11111b">
+<meta name="description" content="Organize sua rotina semanal de estudos de guitarra.">
+<link rel="manifest" href="manifest.json">
+<title>Guitar Study Pro</title>
+<style>
+:root{--bg:#0b0c12;--panel:#151725;--panel2:#1b2038;--line:#292e48;--text:#f4f5fb;--muted:#a4abc3;--pink:#f05279;--blue:#48b5ef;--orange:#ff9d32;--green:#36d69b;--purple:#b38cff;--red:#ff6b73}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#17172b 0%,var(--bg) 48%);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 13px;font-weight:650;transition:.15s}button:hover{filter:brightness(1.09);transform:translateY(-1px)}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh;max-width:1500px;margin:auto}.sidebar{padding:22px 14px;background:#10111b;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:18px}.brand{display:flex;align-items:center;gap:10px;padding:5px 8px 18px;font-weight:800;font-size:17px}.brand-icon{display:grid;place-items:center;width:36px;height:36px;background:#30213a;color:#ff7f9d;border-radius:11px;font-size:21px}.day-nav{display:grid;gap:5px}.day-btn{background:transparent;color:var(--muted);text-align:left;display:flex;align-items:center;gap:10px}.day-btn.active{background:#172b4b;color:#fff;border-left:3px solid var(--pink);padding-left:10px}.day-dot{width:7px;height:7px;border-radius:50%;background:#555b73}.day-btn.active .day-dot{background:var(--pink)}.side-actions{display:grid;gap:8px;margin-top:auto}.side-actions button{background:#182d50;color:#dceaff;text-align:left;font-size:13px}.side-actions button.secondary{background:#202236;color:#d5d9eb}.main{padding:28px clamp(16px,3vw,42px) 40px;min-width:0}.topline{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}.eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.13em}.page-title{font-size:clamp(25px,3vw,34px);margin:4px 0 0;letter-spacing:-.04em}.top-actions{display:flex;gap:9px;flex-wrap:wrap}.primary{background:var(--pink);color:white}.blue{background:#1d477a;color:#e7f2ff}.ghost{background:#24263a;color:#e3e5f4}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:24px}.stat{background:linear-gradient(145deg,#1b2037,#151725);border:1px solid var(--line);border-radius:15px;padding:16px}.stat-label{font-size:12px;color:var(--muted)}.stat-value{font-size:25px;font-weight:800;margin-top:5px}.stat-foot{font-size:12px;color:#aeb5cd;margin-top:3px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 12px}.section-head h2{font-size:17px;margin:0}.section-head span{font-size:12px;color:var(--muted)}.blocks{display:grid;gap:10px}.block{display:grid;grid-template-columns:20px 5px minmax(0,1fr) auto;gap:12px;align-items:center;background:linear-gradient(110deg,#191d32,#151725);border:1px solid #252a43;border-radius:13px;padding:13px 14px;min-width:0}.block.done{opacity:.68}.block.done .block-title{text-decoration:line-through}.drag{color:#646b86;font-size:16px}.stripe{height:42px;border-radius:9px;background:var(--blue)}.block-content{min-width:0}.block-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}.tag{font-size:10px;font-weight:800;letter-spacing:.04em;padding:4px 8px;border-radius:20px;color:#10111b}.block-title{font-size:15px;font-weight:750;overflow-wrap:anywhere}.block-sub{font-size:12px;color:var(--muted);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}.block-actions{display:flex;align-items:center;gap:4px}.icon-btn{width:34px;height:34px;padding:0;background:transparent;color:#abb3cf;font-size:16px}.icon-btn:hover{background:#2a2e49}.icon-btn.play{color:#e3e8ff}.empty{padding:35px 18px;text-align:center;border:1px dashed #3a3e58;border-radius:14px;color:var(--muted)}.empty strong{display:block;color:var(--text);margin-bottom:6px}.progress-panel{background:#171a2a;border:1px solid var(--line);border-radius:15px;padding:18px;margin-top:26px}.progress-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;margin-bottom:10px}.progress-track{height:9px;background:#30344c;border-radius:99px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:99px;transition:width .25s}.note{color:var(--muted);font-size:12px;margin-top:10px}.modal-backdrop{position:fixed;inset:0;background:#05060bd9;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}.modal-backdrop.open{display:flex}.modal{width:min(540px,100%);max-height:92vh;overflow:auto;background:#1b2342;border:1px solid #38405f;border-radius:16px;padding:22px;box-shadow:0 20px 80px #0009}.modal h2{margin:0 0 18px;font-size:21px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#c0c7df}.field input,.field select,.field textarea{width:100%;border:1px solid #424b70;background:#111629;color:#fff;border-radius:8px;padding:10px}.field textarea{min-height:82px;resize:vertical}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.timer-panel{position:fixed;right:18px;bottom:18px;width:min(340px,calc(100vw - 36px));background:#1b2342;border:1px solid #424b70;box-shadow:0 12px 45px #0009;border-radius:17px;padding:18px;z-index:4;display:none}.timer-panel.open{display:block}.timer-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.timer-name{font-weight:750}.timer-display{text-align:center;font-size:48px;font-weight:850;letter-spacing:-.04em;padding:12px 0;font-variant-numeric:tabular-nums}.timer-controls{display:flex;justify-content:center;gap:8px}.timer-controls button{min-width:95px}.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#263a34;border:1px solid #39715c;color:#e6fff3;padding:11px 16px;border-radius:10px;z-index:10;display:none;max-width:90vw}.toast.show{display:block}.footer{font-size:11px;color:#737b98;text-align:center;margin-top:28px}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{padding:12px;border-right:0;border-bottom:1px solid var(--line);gap:10px}.brand{padding:0 5px 5px}.day-nav{display:flex;overflow-x:auto;padding-bottom:3px}.day-btn{white-space:nowrap;padding:9px 11px}.day-btn.active{padding-left:9px}.side-actions{display:flex;flex-wrap:wrap;margin-top:0}.side-actions button{flex:1;min-width:105px}.main{padding:20px 13px 30px}.stats{gap:7px}.stat{padding:12px 10px}.stat-value{font-size:21px}.block{grid-template-columns:12px 4px minmax(0,1fr) auto;gap:8px;padding:11px 8px}.block-actions{gap:0}.icon-btn{width:29px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.topline{align-items:flex-start}.top-actions{width:100%}.top-actions button{flex:1}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-icon">♫</span><span>Guitar Study<br>Pro</span></div>
+  <nav class="day-nav" id="dayNav" aria-label="Dias da semana"></nav>
+  <div class="side-actions">
+    <button class="secondary" id="themeBtn">☀️ Alternar tema</button>
+    <button id="analyticsBtn">📊 Meu progresso</button>
+    <button id="exportBtn">⬇️ Exportar backup</button>
+    <button id="importBtn">⬆️ Importar backup</button>
+    <input id="importFile" type="file" accept="application/json,.json" hidden>
+  </div>
+</aside>
+<main class="main">
+  <div class="topline">
+    <div><div class="eyebrow">Sua rotina de prática</div><h1 class="page-title" id="dayTitle">Segunda-feira</h1></div>
+    <div class="top-actions"><button class="blue" id="runDayBtn">▶ Executar dia</button><button class="primary" id="newBlockBtn">＋ Novo bloco</button></div>
+  </div>
+  <section class="stats">
+    <div class="stat"><div class="stat-label">TEMPO PLANEJADO HOJE</div><div class="stat-value" id="plannedStat">2h 00</div><div class="stat-foot">somando seus blocos</div></div>
+    <div class="stat"><div class="stat-label">CONCLUÍDO HOJE</div><div class="stat-value" id="doneStat">0 min</div><div class="stat-foot" id="doneFoot">nenhum bloco concluído</div></div>
+    <div class="stat"><div class="stat-label">BLOCOS DO DIA</div><div class="stat-value" id="countStat">0</div><div class="stat-foot">exercícios planejados</div></div>
+  </section>
+  <div class="section-head"><h2>Plano de estudos</h2><span id="dayCount">0 blocos</span></div>
+  <section class="blocks" id="blocks"></section>
+  <section class="progress-panel" id="progressPanel">
+    <div class="section-head" style="margin:0 0 12px"><h2>Progresso da semana</h2><span id="weekPercent">0%</span></div>
+    <div class="progress-row"><span id="weekLabel">0 de 0 blocos concluídos</span><span id="weekMinutes">0 / 840 min</span></div>
+    <div class="progress-track"><div class="progress-fill" id="weekFill"></div></div>
+    <div class="note">Dica: marque cada bloco como concluído para acompanhar sua consistência. Seus dados ficam salvos neste dispositivo.</div>
+  </section>
+  <div class="footer">Guitar Study Pro · Pratique com intenção, evolua um dia de cada vez.</div>
+</main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <form class="modal" id="blockForm">
+    <h2 id="modalTitle">Novo bloco</h2>
+    <input type="hidden" id="blockId">
+    <div class="form-grid">
+      <div class="field full"><label for="category">Categoria</label><select id="category">
+        <option>Aquecimento</option><option>Técnica</option><option>Improvisação</option><option>Harmonia</option><option>Repertório</option><option>Teoria</option><option>Ouvido</option><option>Criação</option>
+      </select></div>
+      <div class="field full"><label for="titleInput">Nome do exercício / música *</label><input id="titleInput" required maxlength="100" placeholder="Ex.: Palhetada alternada — cordas 1 e 2"></div>
+      <div class="field"><label for="minutes">Duração (minutos)</label><input id="minutes" type="number" min="1" max="240" value="15" required></div>
+      <div class="field"><label for="bpm">BPM (opcional)</label><input id="bpm" type="number" min="1" max="400" placeholder="Ex.: 80"></div>
+      <div class="field full"><label for="notes">Anotações</label><textarea id="notes" maxlength="2000" placeholder="Dedilhado, andamento, dificuldade, link da aula..."></textarea></div>
+    </div>
+    <div class="modal-actions"><button type="button" class="ghost" id="cancelModal">Cancelar</button><button class="primary" type="submit">Salvar bloco</button></div>
+  </form>
+</div>
+<div class="timer-panel" id="timerPanel">
+  <div class="timer-head"><div><div class="eyebrow">Cronômetro de estudo</div><div class="timer-name" id="timerName">Exercício</div></div><button class="icon-btn" id="closeTimer" aria-label="Fechar cronômetro">✕</button></div>
+  <div class="timer-display" id="timerDisplay">15:00</div>
+  <div class="timer-controls"><button class="primary" id="timerStart">▶ Iniciar</button><button class="ghost" id="timerReset">↺ Reiniciar</button></div>
+  <div class="note" id="timerNote">Concentre-se no bloco atual. Você pode pausar e continuar.</div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const DAYS=['Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado','Domingo'];
+const CATS={'Aquecimento':'#ff9d32','Técnica':'#48b5ef','Improvisação':'#b38cff','Harmonia':'#36d69b','Repertório':'#f05279','Teoria':'#f4ca64','Ouvido':'#5ee0d3','Criação':'#ed8ac5'};
+const KEY='guitarStudyPro_v1';
+const uid=()=>Math.random().toString(36).slice(2,10);
+function starter(){
+ const templates=[
+  [['Aquecimento','Mão direita — palhetada alternada',10,80],['Aquecimento','Mão esquerda — independência dos dedos',10,70],['Técnica','Fritz Kreizler / exercício de sincronização',15,70],['Técnica','Ligados: hammer-on e pull-off',15,65],['Harmonia','Campo menor harmônico',15,60],['Improvisação','Arpejos com salto de corda',15,70],['Repertório','Satch Boogie — trecho difícil',20,70],['Repertório','Música livre / revisão',20,70]],
+  [['Aquecimento','Cromatismos com metrônomo',10,80],['Técnica','Bends afinados e vibrato',20,60],['Técnica','Slides e legato',15,65],['Harmonia','Tríades nas cordas agudas',15,60],['Improvisação','Frases em pentatônica',20,70],['Repertório','Solo de rock — estudar por partes',20,65],['Repertório','Repertório sertanejo',20,75]],
+  [['Aquecimento','Palhetada em cordas soltas',10,80],['Técnica','Economy picking',20,60],['Técnica','Sweep picking — tríades',20,50],['Harmonia','Campo maior e graus',15,60],['Improvisação','Pergunta e resposta melódica',15,70],['Repertório','Satch Boogie — tocar lento',20,65],['Ouvido','Tirar uma frase de ouvido',20,0]],
+  [['Aquecimento','Sincronização 1-2-3-4',10,80],['Técnica','Tapping com metrônomo',20,60],['Técnica','Palhetada híbrida',15,60],['Harmonia','Inversões de acordes',15,60],['Improvisação','Notas-alvo sobre progressão',20,70],['Repertório','Solo de música escolhida',20,70],['Repertório','Revisão sem parar',20,70]],
+  [['Aquecimento','Rotina curta de aquecimento',10,80],['Técnica','Palhetada alternada — precisão',15,85],['Técnica','Harmônicos naturais e artificiais',15,60],['Harmonia','Progressões I–V–vi–IV',15,65],['Improvisação','Improvisar por 3 minutos',20,70],['Repertório','Tocar músicas completas',25,75],['Criação','Criar lick próprio',20,70]],
+  [['Aquecimento','Aquecimento leve',10,70],['Técnica','Revisar a técnica mais difícil',20,60],['Repertório','Repertório sertanejo — execução',30,75],['Repertório','Rock / instrumental — execução',30,70],['Ouvido','Tirar melodia de ouvido',15,0],['Criação','Gravar uma ideia musical',15,70]],
+  [['Aquecimento','Mobilidade leve e cromatismos',10,60],['Técnica','Revisão técnica sem forçar',15,60],['Harmonia','Revisão da semana',15,60],['Improvisação','Improvisar livremente',20,65],['Repertório','Tocar por prazer / repertório',30,70],['Teoria','Anotar dúvidas para próxima semana',10,0]]
+ ];
+ return Object.fromEntries(DAYS.map((day,i)=>[day,templates[i].map(([cat,title,minutes,bpm])=>({id:uid(),cat,title,minutes,bpm,notes:'',done:false}))]));
+}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.days)return s}catch(e){}return {days:starter(),dark:true,history:[]}}
+let state=load(), currentDay=DAYS[Math.max(0,(new Date().getDay()+6)%7)], timer={id:null,remaining:0,total:0,running:false,interval:null};
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fmt(min){const h=Math.floor(min/60),m=min%60;return h?`${h}h ${String(m).padStart(2,'0')}`:`${m} min`}
+function total(day){return (state.days[day]||[]).reduce((s,b)=>s+Number(b.minutes||0),0)}
+function allBlocks(){return DAYS.flatMap(d=>(state.days[d]||[]).map(b=>({...b,day:d})))}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300)}
+function renderNav(){document.getElementById('dayNav').innerHTML=DAYS.map(d=>`<button class="day-btn ${d===currentDay?'active':''}" data-day="${d}"><span class="day-dot"></span>${d.replace('-feira','')}</button>`).join('');document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{currentDay=b.dataset.day;render()})}
+function render(){
+ renderNav();const list=state.days[currentDay]||[];document.getElementById('dayTitle').textContent=currentDay;
+ document.getElementById('plannedStat').textContent=fmt(total(currentDay));const completed=list.filter(b=>b.done);const doneM=completed.reduce((s,b)=>s+Number(b.minutes||0),0);
+ document.getElementById('doneStat').textContent=fmt(doneM);document.getElementById('doneFoot').textContent=completed.length?`${completed.length} bloco(s) concluído(s)`:'nenhum bloco concluído';document.getElementById('countStat').textContent=list.length;document.getElementById('dayCount').textContent=`${list.length} bloco${list.length===1?'':'s'}`;
+ const area=document.getElementById('blocks');
+ if(!list.length){area.innerHTML='<div class="empty"><strong>Seu dia está livre 🎸</strong>Adicione um bloco para começar a montar sua rotina.<br><br><button class="primary" onclick="openModal()">＋ Criar primeiro bloco</button></div>'}
+ else area.innerHTML=list.map((b,i)=>{const c=CATS[b.cat]||'#48b5ef';return `<article class="block ${b.done?'done':''}"><span class="drag">${String(i+1).padStart(2,'0')}</span><span class="stripe" style="background:${c}"></span><div class="block-content"><div class="block-meta"><span class="tag" style="background:${c}">${esc(b.cat.toUpperCase())}</span>${b.done?'<span style="font-size:11px;color:#36d69b">✓ CONCLUÍDO</span>':''}</div><div class="block-title">${esc(b.title)}</div><div class="block-sub"><span>◷ ${Number(b.minutes)} min</span>${b.bpm?`<span>♩ ${Number(b.bpm)} BPM</span>`:''}${b.notes?'<span>▤ tem anotações</span>':''}</div></div><div class="block-actions"><button class="icon-btn play" title="Iniciar cronômetro" aria-label="Iniciar cronômetro" onclick="startTimer('${b.id}')">▶</button><button class="icon-btn" title="Editar bloco" aria-label="Editar bloco" onclick="editBlock('${b.id}')">✎</button><button class="icon-btn" title="${b.done?'Desmarcar conclusão':'Marcar como concluído'}" aria-label="Alternar conclusão" onclick="toggleDone('${b.id}')">${b.done?'↶':'✓'}</button><button class="icon-btn" title="Excluir bloco" aria-label="Excluir bloco" onclick="deleteBlock('${b.id}')">▤</button></div></article>`}).join('');
+ const all=allBlocks(), done=all.filter(b=>b.done), mins=done.reduce((s,b)=>s+Number(b.minutes||0),0), planned=all.reduce((s,b)=>s+Number(b.minutes||0),0),pct=all.length?Math.round(done.length/all.length*100):0;
+ document.getElementById('weekPercent').textContent=pct+'%';document.getElementById('weekLabel').textContent=`${done.length} de ${all.length} blocos concluídos`;document.getElementById('weekMinutes').textContent=`${mins} / ${planned} min`;document.getElementById('weekFill').style.width=pct+'%';
+ document.getElementById('themeBtn').textContent=state.dark?'☀️ Tema claro':'🌙 Tema escuro';document.body.classList.toggle('light',!state.dark);
+}
+function openModal(b=null){document.getElementById('blockForm').reset();document.getElementById('blockId').value=b?.id||'';document.getElementById('modalTitle').textContent=b?'Editar bloco':'Novo bloco';document.getElementById('category').value=b?.cat||'Aquecimento';document.getElementById('titleInput').value=b?.title||'';document.getElementById('minutes').value=b?.minutes||15;document.getElementById('bpm').value=b?.bpm||'';document.getElementById('notes').value=b?.notes||'';document.getElementById('modalBackdrop').classList.add('open');setTimeout(()=>document.getElementById('titleInput').focus(),50)}
+function closeModal(){document.getElementById('modalBackdrop').classList.remove('open')}
+function findBlock(id){for(const d of DAYS){const b=(state.days[d]||[]).find(x=>x.id===id);if(b)return {b,d}}return null}
+window.openModal=openModal;window.editBlock=id=>{const x=findBlock(id);if(x){currentDay=x.d;render();openModal(x.b)}};
+window.toggleDone=id=>{const x=findBlock(id);if(!x)return;x.b.done=!x.b.done;if(x.b.done)state.history.push({id:x.b.id,title:x.b.title,day:x.d,date:new Date().toISOString(),minutes:x.b.minutes});save();render();toast(x.b.done?'Bloco concluído! Boa! 🎸':'Conclusão desmarcada.')};
+window.deleteBlock=id=>{const x=findBlock(id);if(!x)return;if(confirm(`Excluir "${x.b.title}"?`)){state.days[x.d]=state.days[x.d].filter(b=>b.id!==id);save();render();toast('Bloco excluído.')}};
+document.getElementById('blockForm').addEventListener('submit',e=>{e.preventDefault();const id=document.getElementById('blockId').value;const data={id:id||uid(),cat:document.getElementById('category').value,title:document.getElementById('titleInput').value.trim(),minutes:Math.max(1,Math.min(240,Number(document.getElementById('minutes').value)||15)),bpm:Math.max(0,Number(document.getElementById('bpm').value)||0),notes:document.getElementById('notes').value.trim(),done:false};if(!data.title)return;const arr=state.days[currentDay]||(state.days[currentDay]=[]);if(id){const ix=arr.findIndex(b=>b.id===id);if(ix>=0)data.done=arr[ix].done;arr[ix>=0?ix:arr.length]=data}else arr.push(data);save();closeModal();render();toast(id?'Bloco atualizado!':'Bloco adicionado!')});
+document.getElementById('newBlockBtn').onclick=()=>openModal();document.getElementById('cancelModal').onclick=closeModal;document.getElementById('modalBackdrop').onclick=e=>{if(e.target.id==='modalBackdrop')closeModal()};
+document.getElementById('runDayBtn').onclick=()=>{const next=(state.days[currentDay]||[]).find(b=>!b.done);if(!next){toast('Todos os blocos deste dia foram concluídos!');return}startTimer(next.id)};
+function updateTimer(){const m=Math.floor(timer.remaining/60),s=timer.remaining%60;document.getElementById('timerDisplay').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;document.getElementById('timerStart').textContent=timer.running?'Ⅱ Pausar':'▶ Continuar'}
+window.startTimer=id=>{const x=findBlock(id);if(!x)return;if(timer.interval)clearInterval(timer.interval);timer={id,remaining:Number(x.b.minutes)*60,total:Number(x.b.minutes)*60,running:false,interval:null};document.getElementById('timerName').textContent=x.b.title;document.getElementById('timerPanel').classList.add('open');document.getElementById('timerNote').textContent=`${x.d} · ${x.b.minutes} minutos planejados`;updateTimer();runTimer()};
+function runTimer(){if(timer.running){timer.running=false;if(timer.interval)clearInterval(timer.interval);timer.interval=null;updateTimer();return}timer.running=true;updateTimer();timer.interval=setInterval(()=>{timer.remaining--;updateTimer();if(timer.remaining<=0){clearInterval(timer.interval);timer.interval=null;timer.running=false;document.getElementById('timerNote').textContent='Tempo encerrado! Marque o bloco como concluído na lista.';document.getElementById('timerStart').textContent='▶ Iniciar novamente';if('Notification'in window&&Notification.permission==='granted')new Notification('Guitar Study Pro',{body:'Tempo de estudo encerrado!'});try{new AudioContext().resume()}catch(e){}toast('Tempo encerrado! 🎸')}},1000)}
+document.getElementById('timerStart').onclick=()=>{if(timer.remaining<=0){timer.remaining=timer.total;timer.running=false}runTimer()};document.getElementById('timerReset').onclick=()=>{if(timer.interval)clearInterval(timer.interval);timer.interval=null;timer.running=false;timer.remaining=timer.total;updateTimer()};document.getElementById('closeTimer').onclick=()=>{if(timer.interval)clearInterval(timer.interval);timer.interval=null;timer.running=false;document.getElementById('timerPanel').classList.remove('open')};
+document.getElementById('themeBtn').onclick=()=>{state.dark=!state.dark;document.body.style.background=state.dark?'radial-gradient(ellipse at top left,#17172b 0%,#0b0c12 48%)':'#f3f5fa';document.body.style.color=state.dark?'#f4f5fb':'#171827';save();render();toast(state.dark?'Tema escuro ativado':'Tema claro selecionado')};
+document.getElementById('analyticsBtn').onclick=()=>{const all=allBlocks(),done=all.filter(b=>b.done),minutes=done.reduce((s,b)=>s+Number(b.minutes),0);alert(`📊 SEU PROGRESSO\\n\\nBlocos concluídos: ${done.length} de ${all.length}\\nTempo planejado concluído: ${fmt(minutes)}\\n\\nPor dia:\\n${DAYS.map(d=>`${d}: ${(state.days[d]||[]).filter(b=>b.done).length}/${(state.days[d]||[]).length} blocos`).join('\\n')}\\n\\nContinue praticando!`)};
+document.getElementById('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='backup-guitar-study-pro.json';a.click();URL.revokeObjectURL(url);toast('Backup exportado!')};
+document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();document.getElementById('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!obj.days||!DAYS.every(d=>Array.isArray(obj.days[d])))throw Error('Arquivo inválido');if(confirm('Importar este backup e substituir a rotina atual?')){state=obj;save();render();toast('Backup importado!')}}catch(err){alert('Não foi possível importar. Escolha um backup válido do Guitar Study Pro.')}e.target.value=''};
+if('serviceWorker'in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+render();
+</script>
+</body>
+</html>
