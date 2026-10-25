@@ -95,7 +95,23 @@ let state=load(), currentDay=DAYS[Math.max(0,(new Date().getDay()+6)%7)], timer=
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function fmt(min){const h=Math.floor(min/60),m=min%60;return h?`${h}h ${String(m).padStart(2,'0')}`:`${m} min`}
-function total(day){return (state.days[day]||[]).reduce((s,b)=>s+Number(b.minutes||0),0)}
+function total(day){return (state.days[day]||[]).reduce((s,b)=>s+Number(b.minutes||0),0)} function spentSeconds(block){
+  return Math.max(0, Number(block.timeSpentSec || 0));
+}
+
+function remainingSeconds(block){
+  return Math.max(0, Number(block.minutes || 0) * 60 - spentSeconds(block));
+}
+
+function formatRemaining(seconds){
+  const s = Math.max(0, Math.ceil(seconds));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return h
+    ? `${h}h ${String(m).padStart(2,'0')}`
+    : `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
 function allBlocks(){return DAYS.flatMap(d=>(state.days[d]||[]).map(b=>({...b,day:d})))}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300)}
 function renderNav(){document.getElementById('dayNav').innerHTML=DAYS.map(d=>`<button class="day-btn ${d===currentDay?'active':''}" data-day="${d}"><span class="day-dot"></span>${d.replace('-feira','')}</button>`).join('');document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{currentDay=b.dataset.day;render()})}
